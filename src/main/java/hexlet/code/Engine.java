@@ -27,7 +27,7 @@ public class Engine {
     public static void flow(String gameNumber) {
         switch (gameNumber) {
             case ("0") -> Engine.setProcessCount(-2);
-            case ("1") -> Engine.setProcessCount(-2);
+            case ("1") -> Engine.setProcessCount(-3);
             case ("2") -> {
                 Even.start();
                 while (processCount < 3 && processCount != -1) {
@@ -61,7 +61,10 @@ public class Engine {
 
 
         }
-        if (processCount == -2) {
+        if(processCount == -3){
+            Cli.start();
+        }
+        else if (processCount == -2) {
             return;
         } else if (processCount != -1) {
             System.out.println("Congratulations, " + Cli.name + "!");
