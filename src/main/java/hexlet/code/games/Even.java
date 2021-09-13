@@ -2,14 +2,12 @@ package hexlet.code.games;
 
 import hexlet.code.Cli;
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 import java.util.Scanner;
 
 
 public class Even {
-
-    private static String answer;
-    private static String result;
 
     public static void start() {
         Cli.start();
@@ -17,17 +15,18 @@ public class Even {
     }
 
     public static void process() {
-        int range = 100;
+        String answer;
+        String result;
+        int range = Utils.VALUERANGE;
         int value = (int) (Math.random() * range);
-        if(value % 2 == 0){
-            setResult("yes");
-        }
-        else {
-            setResult("no");
+        if (value % 2 == 0) {
+            result = ("yes");
+        } else {
+            result = ("no");
         }
         System.out.print("Question: " + value + "\n" + "Your answer: ");
         Scanner sc = new Scanner(System.in);
-        setAnswer(sc.nextLine());
+        answer = sc.nextLine();
         if (value % 2 == 0 && answer.equals("yes")) {
             System.out.println("Correct!");
             Engine.setProcessCount(Engine.getProcessCount() + 1);
@@ -37,15 +36,10 @@ public class Even {
         } else {
             System.out.println("Incorrect");
             Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.getName() + "!");
+            System.out.println("'" + answer
+                    + "'" + " is wrong answer ;(. Correct answer was '"
+                    + result + "'. Let's try again, " + Cli.getName() + "!");
             return;
         }
-    }
-
-    public static void setAnswer(String answer) {
-        Even.answer = answer;
-    }
-    public static void setResult(String result) {
-        Even.result = result;
     }
 }

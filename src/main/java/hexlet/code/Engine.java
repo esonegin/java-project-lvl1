@@ -36,33 +36,36 @@ public class Engine {
             case ("1") -> Cli.start();
             case ("2") -> {
                 Even.start();
-                while (processCount < 3 && processCount != -1) {
+                while (processCount < Utils.ATTEMPTS && processCount != -1) {
                     Even.process();
                 }
             }
             case ("3") -> {
                 Calc.start();
-                while (processCount < 3 && processCount != -1) {
+                while (processCount < Utils.ATTEMPTS && processCount != -1) {
                     Calc.process();
                 }
             }
             case ("4") -> {
                 GCD.start();
-                while (processCount < 3 && processCount != -1) {
+                while (processCount < Utils.ATTEMPTS && processCount != -1) {
                     GCD.process();
                 }
             }
             case ("5") -> {
                 Progression.start();
-                while (processCount < 3 && processCount != -1) {
+                while (processCount < Utils.ATTEMPTS && processCount != -1) {
                     Progression.process();
                 }
             }
             case ("6") -> {
                 Prime.start();
-                while (processCount < 3 && processCount != -1) {
+                while (processCount < Utils.ATTEMPTS && processCount != -1) {
                     Prime.process();
                 }
+            }
+            default -> {
+                break;
             }
 
 
@@ -77,7 +80,8 @@ public class Engine {
         return processCount;
     }
 
-    public static void setProcessCount(int processCount) {
-        Engine.processCount = processCount;
+
+    public static void setProcessCount(int value) {
+        Engine.processCount = value;
     }
 }
