@@ -27,10 +27,13 @@ public class Calc {
         switch (operation) {
             case '+':
                 result = first + second;
+                break;
             case '-':
                 result = first - second;
+                break;
             case '*':
                 result = first * second;
+                break;
             default:
                 break;
         }
