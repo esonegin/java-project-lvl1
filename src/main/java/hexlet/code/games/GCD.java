@@ -13,8 +13,9 @@ public class GCD {
     }
 
     public static void process() {
-        int first = (int) (Math.random() * 100);
-        int second = (int) (Math.random() * 100);
+        int range = 100;
+        int first = (int) (Math.random() * range);
+        int second = (int) (Math.random() * range);
         //Большее число поделить на меньшее
         int result = surplusFinder(Math.max(first, second), Math.min(first, second));
 
@@ -28,7 +29,7 @@ public class GCD {
         } else {
             System.out.println("Incorrect");
             Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.name + "!");
+            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.getName() + "!");
             return;
         }
     }

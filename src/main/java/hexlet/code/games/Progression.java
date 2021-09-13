@@ -13,17 +13,18 @@ public class Progression {
     }
 
     public static void process() {
+        int range = 100;
         //Рандомизируем разницу прогрессии
-        int difference = (int) (Math.random() * 100);
+        int difference = (int) (Math.random() * range);
         //Рандомизируем начальное значение прогрессии (0 - 100)
-        int value = (int) (Math.random() * 100);
+        int value = (int) (Math.random() * range);
         //Добавляем начальное значение в строку результата
         StringBuilder prog = new StringBuilder(String.valueOf(value));
         //Создаем массив значений
         String[] progression = new String[10];
         progression[0] = String.valueOf(value);
         //Рандомизируем индекс для замены значения
-        int randomIndex = (int) (Math.random() * 10);
+        int randomIndex = (int) (Math.random() * progression.length);
 
         //Наполняем массив
         for (int i = 1; i < progression.length; i++) {
@@ -48,7 +49,7 @@ public class Progression {
         } else {
             System.out.println("Incorrect");
             Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + question + "'. Let's try again, " + Cli.name + "!");
+            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + question + "'. Let's try again, " + Cli.getName() + "!");
         }
     }
 }

@@ -17,7 +17,8 @@ public class Even {
     }
 
     public static void process() {
-        int value = (int) (Math.random() * 100);
+        int range = 100;
+        int value = (int) (Math.random() * range);
         if(value % 2 == 0){
             setResult("yes");
         }
@@ -36,7 +37,7 @@ public class Even {
         } else {
             System.out.println("Incorrect");
             Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.name + "!");
+            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.getName() + "!");
             return;
         }
     }

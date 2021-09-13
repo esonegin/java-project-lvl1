@@ -13,7 +13,8 @@ public class Prime {
     }
 
     public static void process() {
-        int first = (int) (Math.random() * 100);
+        int range = 100;
+        int first = (int) (Math.random() * range);
         System.out.print("Question: " + first + " " + "\n" + "Your answer: ");
         Scanner sc = new Scanner(System.in);
         String answer = sc.nextLine();
@@ -30,7 +31,7 @@ public class Prime {
         } else {
             System.out.println("Incorrect");
             Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.name + "!");
+            System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was '" + result + "'. Let's try again, " + Cli.getName() + "!");
         }
 
     }

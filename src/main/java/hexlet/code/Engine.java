@@ -1,6 +1,10 @@
 package hexlet.code;
 
-import hexlet.code.games.*;
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
 
 import java.util.Scanner;
 
@@ -26,8 +30,10 @@ public class Engine {
 
     public static void flow(String gameNumber) {
         switch (gameNumber) {
-            case ("0") -> Engine.setProcessCount(-2);
-            case ("1") -> Engine.setProcessCount(-3);
+            case ("0") -> {
+                return;
+            }
+            case ("1") -> Cli.start();
             case ("2") -> {
                 Even.start();
                 while (processCount < 3 && processCount != -1) {
@@ -61,13 +67,8 @@ public class Engine {
 
 
         }
-        if(processCount == -3){
-            Cli.start();
-        }
-        else if (processCount == -2) {
-            return;
-        } else if (processCount != -1) {
-            System.out.println("Congratulations, " + Cli.name + "!");
+        if (processCount != -1) {
+            System.out.println("Congratulations, " + Cli.getName() + "!");
         }
 
     }
