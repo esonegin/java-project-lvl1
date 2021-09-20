@@ -1,16 +1,14 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.App;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import java.util.Scanner;
-
 public class Progression {
+
     private static final int PROGRESSIONLENGTH = 10;
 
     public static void start() {
-        Cli.start();
         System.out.println("What number is missing in the progression?");
     }
 
@@ -40,11 +38,7 @@ public class Progression {
         for (String str : progression) {
             finalresult.append(str).append(" ");
         }
-
-        System.out.print("Question: " + finalresult + "\n" + "Your answer: ");
-        Scanner sc = new Scanner(System.in);
-        String answer = sc.nextLine();
-
+        String answer = Engine.question(String.valueOf(finalresult));
         if (answer.equals(question)) {
             System.out.println("Correct!");
             Engine.setProcessCount(Engine.getProcessCount() + 1);
@@ -54,7 +48,7 @@ public class Progression {
             System.out.println("'" + answer + "'"
                     + " is wrong answer ;(. Correct answer was '"
                     + question + "'. Let's try again, "
-                    + Cli.getName() + "!");
+                    + App.getName() + "!");
         }
     }
 }

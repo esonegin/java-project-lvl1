@@ -8,32 +8,15 @@ import hexlet.code.games.Progression;
 
 import java.util.Scanner;
 
-
 public class Engine {
-
     private static int processCount;
-
-    public static String choice() {
-        System.out.print("""
-                Please enter the game number and press Enter.
-                1 - Greet
-                2 - Even
-                3 - Calc
-                4 - GCD
-                5 - Progression
-                6 - Prime
-                0 - Exit
-                Your choice:\s""");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
 
     public static void flow(String gameNumber) {
         switch (gameNumber) {
             case ("0") -> {
                 return;
             }
-            case ("1") -> Cli.start();
+            case ("1") -> App.greeting();
             case ("2") -> {
                 Even.start();
                 while (processCount < Utils.ATTEMPTS && processCount != -1) {
@@ -64,14 +47,13 @@ public class Engine {
                     Prime.process();
                 }
             }
+
             default -> {
-                break;
+                return;
             }
-
-
         }
         if (processCount != -1) {
-            System.out.println("Congratulations, " + Cli.getName() + "!");
+            System.out.println("Congratulations, " + App.getName() + "!");
         }
 
     }
@@ -80,8 +62,13 @@ public class Engine {
         return processCount;
     }
 
-
     public static void setProcessCount(int value) {
         Engine.processCount = value;
+    }
+
+    public static String question(String value) {
+        System.out.print("Question: " + value + "\n" + "Your answer: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
     }
 }

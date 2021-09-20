@@ -1,24 +1,22 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.App;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
-
-import java.util.Scanner;
 
 public class Prime {
 
     public static void start() {
-        Cli.start();
         System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
     }
 
     public static void process() {
         int range = Utils.VALUERANGE;
         int first = (int) (Math.random() * range);
-        System.out.print("Question: " + first + " " + "\n" + "Your answer: ");
-        Scanner sc = new Scanner(System.in);
-        String answer = sc.nextLine();
+
+        String answer = Engine.question(String.valueOf(first));
+
+
         String result;
         if (isPrime(first)) {
             result = "yes";
@@ -35,7 +33,7 @@ public class Prime {
             System.out.println("'" + answer + "'"
                     + " is wrong answer ;(. Correct answer was '"
                     + result + "'. Let's try again, "
-                    + Cli.getName() + "!");
+                    + App.getName() + "!");
         }
 
     }

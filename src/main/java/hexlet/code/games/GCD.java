@@ -1,30 +1,26 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.App;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
-import java.util.Scanner;
-
 public class GCD {
 
+    private static int gcdIntValue;
+
     public static void start() {
-        Cli.start();
         System.out.println("Find the greatest common divisor of given numbers.");
     }
 
     public static void process() {
         int range = Utils.VALUERANGE;
-        int first = (int) (Math.random() * range);
-        int second = (int) (Math.random() * range);
+        int gcdRandomizeFirstValue = (int) (Math.random() * range);
+        int gcdRandomizeSecondValue = (int) (Math.random() * range);
         //Большее число поделить на меньшее
-        int result = surplusFinder(Math.max(first, second), Math.min(first, second));
-
-        System.out.print("Question: " + first + " " + second + "\n" + "Your answer: ");
-        Scanner sc = new Scanner(System.in);
-        int answer = sc.nextInt();
-
-        if (answer == result) {
+        gcdIntValue = surplusFinder(Math.max(gcdRandomizeFirstValue, gcdRandomizeSecondValue),
+                Math.min(gcdRandomizeFirstValue, gcdRandomizeSecondValue));
+        String answer = Engine.question(resultValue(gcdRandomizeFirstValue, gcdRandomizeSecondValue));
+        if (Integer.parseInt(answer) == gcdIntValue) {
             System.out.println("Correct!");
             Engine.setProcessCount(Engine.getProcessCount() + 1);
         } else {
@@ -32,9 +28,8 @@ public class GCD {
             Engine.setProcessCount(-1);
             System.out.println("'" + answer + "'"
                     + " is wrong answer ;(. Correct answer was '"
-                    + result + "'. Let's try again, " + Cli.getName()
+                    + gcdIntValue + "'. Let's try again, " + App.getName()
                     + "!");
-            return;
         }
     }
 
@@ -47,5 +42,10 @@ public class GCD {
             surplus1 = surplusFinder(second, surplus1);
         }
         return surplus1;
+    }
+
+    public static String resultValue(int first, int second) {
+
+        return first + " " + second;
     }
 }

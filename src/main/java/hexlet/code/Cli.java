@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Cli {
 
-    private static String name = "";
+   /* private static String name = "";
 
     public static void start() {
         System.out.print("Welcome to the Brain Games!" + "\n" + "May I have your name? ");
@@ -15,6 +15,6 @@ public class Cli {
 
     public static String getName() {
         return name;
-    }
+    }*/
 
 }
