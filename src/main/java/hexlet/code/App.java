@@ -7,10 +7,12 @@ public class App {
     private static String name = "";
 
     public static void main(String[] args) {
-        //Выводим приветствие
-        greeting();
+
         //Выводим меню
-        Engine.flow(choice());
+        String choice = choice();
+        greeting();
+        Engine.flow(choice);
+
     }
 
     public static void greeting() {
@@ -33,6 +35,7 @@ public class App {
                 Your choice:\s""");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
+        //Выводим приветствие
     }
 
     public static String getName() {
