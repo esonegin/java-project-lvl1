@@ -10,8 +10,12 @@ public class App {
 
         //Выводим меню
         String choice = choice();
+        if(choice.equals("0")){
+            System.exit(0);
+        }
         greeting();
         Engine.flow(choice);
+
 
     }
 
@@ -35,7 +39,6 @@ public class App {
                 Your choice:\s""");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
-        //Выводим приветствие
     }
 
     public static String getName() {

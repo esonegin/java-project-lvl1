@@ -13,7 +13,7 @@ public class Engine {
     public static void flow(String gameNumber) {
         switch (gameNumber) {
             case ("0") -> {
-                return;
+                System.exit(0);
             }
             case ("1") -> App.greeting();
             case ("2") -> {
