@@ -1,22 +1,29 @@
 package hexlet.code;
-
 import java.util.Scanner;
 
 public class App {
 
     private static String name = "";
+    private static final String[] games = new String[]{"1", "2", "3", "4", "5", "6"};
 
     public static void main(String[] args) {
 
         //Выводим меню
         String choice = choice();
-        if(choice.equals("0")){
-            System.exit(0);
-        }
-        greeting();
+        choiceValidator(choice);
         Engine.flow(choice);
+        greeting();
 
 
+    }
+
+    public static void choiceValidator(String choice){
+        for (String gamenumber : games){
+            if (choice.equals(gamenumber)){
+                return;
+            }
+        }
+        System.exit(0);
     }
 
     public static void greeting() {

@@ -7,14 +7,13 @@ import hexlet.code.games.Prime;
 import hexlet.code.games.Progression;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class Engine {
     private static int processCount;
 
     public static void flow(String gameNumber) {
         switch (gameNumber) {
-            case ("0") -> {
-                System.exit(0);
-            }
             case ("1") -> App.greeting();
             case ("2") -> {
                 Even.start();
@@ -46,10 +45,7 @@ public class Engine {
                     Prime.process();
                 }
             }
-
-            default -> {
-                return;
-            }
+            default -> exit(0);
         }
         if (processCount != -1) {
             System.out.println("Congratulations, " + App.getName() + "!");
