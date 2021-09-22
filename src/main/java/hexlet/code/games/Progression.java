@@ -59,6 +59,6 @@ public class Progression {
         for (String s : progression) {
             prog.append(" ").append(s);
         }
-        return String.valueOf(prog);
+        return String.valueOf(prog).trim();
     }
 }
