@@ -1,68 +1,37 @@
 package hexlet.code.games;
 
-import hexlet.code.App;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class Even {
 
-    private static int evenRandomizeIntValue = resultInt();
-    private static String answer;
-    private static String result;
-
-    public static void start() {
-        System.out.println("Answer 'yes' if number even otherwise answer 'no'.");
-    }
+    private static final String[] QuestionArray = new String[Utils.ATTEMPTS];
+    private static final String[] expectedResponse = new String[Utils.ATTEMPTS];
+    private static final String description = "Answer 'yes' if number even otherwise answer 'no'.";
 
     public static void process() {
+        resultValue(questionIntArray());
+        Engine.flow(QuestionArray, expectedResponse, description);
+    }
 
-        setEvenRandomizeIntValue(resultInt());
-        answer = Engine.question(String.valueOf(getEvenRandomizeIntValue()));
-        result = resultValue(getEvenRandomizeIntValue());
-
-        if (result.equals("yes") && answer.equals("yes")) {
-            System.out.println("Correct!");
-            Engine.setProcessCount(Engine.getProcessCount() + 1);
-        } else if (result.equals("no") && answer.equals("no")) {
-            System.out.println("Correct!");
-            Engine.setProcessCount(Engine.getProcessCount() + 1);
-        } else {
-            System.out.println("Incorrect");
-            Engine.setProcessCount(-1);
-            System.out.println("'" + Even.getEvenAnswer()
-                    + "'" + " is wrong answer ;(. Correct answer was '"
-                    + Even.getEvenResult() + "'. Let's try again, " + App.getName() + "!");
-            Engine.setProcessCount(-1);
+    //Формируем массив строк с правильными ответами
+    public static void resultValue(int[] evenQuestionArray) {
+        for (int i = 0; i < Utils.ATTEMPTS; i++) {
+            if (evenQuestionArray[i] % 2 == 0) {
+                expectedResponse[i] = ("yes");
+            } else {
+                expectedResponse[i] = ("no");
+            }
         }
     }
 
-    public static String resultValue(int randomValue) {
-        if (randomValue % 2 == 0) {
-            result = ("yes");
-        } else {
-            result = ("no");
+    //Заполняем массив вопросов рандомными числами
+    public static int[] questionIntArray() {
+        int[] result = new int[3];
+        for (int i = 0; i < Utils.ATTEMPTS; i++) {
+            result[i] = (int) (Math.random() * Utils.VALUERANGE);
+            QuestionArray[i] = String.valueOf(result[i]);
         }
         return result;
     }
-
-    public static int resultInt() {
-        return (int) (Math.random() * Utils.VALUERANGE);
-    }
-
-    public static int getEvenRandomizeIntValue() {
-        return evenRandomizeIntValue;
-    }
-
-    public static String getEvenAnswer() {
-        return answer;
-    }
-
-    public static String getEvenResult() {
-        return result;
-    }
-
-    public static void setEvenRandomizeIntValue(int value) {
-        evenRandomizeIntValue = value;
-    }
-
 }

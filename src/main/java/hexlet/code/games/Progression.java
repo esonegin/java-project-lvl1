@@ -1,54 +1,64 @@
 package hexlet.code.games;
 
-import hexlet.code.App;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class Progression {
 
     private static final int PROGRESSIONLENGTH = 10;
-
-    public static void start() {
-        System.out.println("What number is missing in the progression?");
-    }
+    private static final String[] QuestionArray = new String[Utils.ATTEMPTS];
+    private static final String[] expectedResponse = new String[Utils.ATTEMPTS];
+    private static final String description = "What number is missing in the progression?";
 
     public static void process() {
-        int range = Utils.VALUERANGE;
-        //Рандомизируем разницу прогрессии
-        int difference = (int) (Math.random() * range);
-        //Рандомизируем начальное значение прогрессии (0 - 100)
-        int value = (int) (Math.random() * range);
-        //Добавляем начальное значение в строку результата
-        StringBuilder prog = new StringBuilder(String.valueOf(value));
-        //Создаем массив значений
-        String[] progression = new String[PROGRESSIONLENGTH];
-        progression[0] = String.valueOf(value);
-        //Рандомизируем индекс для замены значения
-        int randomIndex = (int) (Math.random() * progression.length);
+        questionStringArray();
+        Engine.flow(QuestionArray, expectedResponse, description);
+    }
 
-        //Наполняем массив
+    //Заполняем массив вопросов рандомными примерами
+    public static void questionStringArray() {
+        for (int i = 0; i < Utils.ATTEMPTS; i++) {
+            //Заполняем массив рандомными значениями
+            String[] progression = pullProgressionArray();
+            //Удаляем значение по рандомному индексу и записываем его в массив ответов
+            expectedResponse[i] = String.valueOf(removeRandomIndex(progression));
+            //Добавляем строку с прогрессией в массив вопросов
+            QuestionArray[i] = addStringProgression(progression);
+        }
+    }
+
+    //Наполняем массив
+    public static String[] pullProgressionArray() {
+        int[] progression = new int[PROGRESSIONLENGTH];
+        String[] result = new String[progression.length];
+        //Рандомизируем разницу прогрессии
+        int difference = (int) (Math.random() * Utils.VALUERANGE);
+        //Рандомизируем начальное значение прогрессии (0 - 100)
+        int value = (int) (Math.random() * Utils.VALUERANGE);
+        progression[0] = value;
         for (int i = 1; i < progression.length; i++) {
-            progression[i] = String.valueOf(Integer.parseInt(progression[i - 1]) + difference);
-            prog.append(" ").append(progression[i]);
+            progression[i] = progression[i - 1] + difference;
         }
+        for (int i = 0; i < progression.length; i++) {
+            result[i] = String.valueOf(progression[i]);
+        }
+        return result;
+    }
+
+    public static String removeRandomIndex(String[] array) {
         //Заменяем рандомное значение
-        String question = progression[randomIndex];
-        progression[randomIndex] = "..";
-        StringBuilder finalresult = new StringBuilder();
-        for (String str : progression) {
-            finalresult.append(str).append(" ");
+        int randomIndex = (int) (Math.random() * array.length);
+        String result = array[randomIndex];
+        array[randomIndex] = "..";
+        return result;
+    }
+
+    public static String addStringProgression(String[] progression) {
+        //Добавляем начальное значение в строку результата
+        StringBuilder prog = new StringBuilder();
+        for (String s : progression) {
+            prog.append(" ").append(s);
         }
-        String answer = Engine.question(String.valueOf(finalresult));
-        if (answer.equals(question)) {
-            System.out.println("Correct!");
-            Engine.setProcessCount(Engine.getProcessCount() + 1);
-        } else {
-            System.out.println("Incorrect");
-            Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'"
-                    + " is wrong answer ;(. Correct answer was '"
-                    + question + "'. Let's try again, "
-                    + App.getName() + "!");
-        }
+        return String.valueOf(prog);
     }
 }

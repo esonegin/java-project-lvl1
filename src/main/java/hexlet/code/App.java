@@ -1,21 +1,54 @@
 package hexlet.code;
 
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Progression;
+import hexlet.code.games.Prime;
+
+
 import java.util.Scanner;
 
 public class App {
 
-    private static String name = "";
     private static final String[] GAMES = new String[]{"1", "2", "3", "4", "5", "6"};
+    public static String choice;
 
     public static void main(String[] args) {
-
-        //Выводим меню
-        String choice = choice();
+        //Выводим меню и записываем выбор в переменную
+        choice = choice();
+        //Валидируем выбор
         choiceValidator(choice);
-        Engine.flow(choice);
-        greeting();
+        //Выводим приветствие
+        Engine.greeting();
+        //Запускаем игру
+        startGame(choice);
 
+    }
 
+    public static void startGame(String choice) {
+        switch (choice) {
+            case ("1"):
+                Engine.greeting();
+                break;
+            case ("2"):
+                Even.process();
+                break;
+            case ("3"):
+                Calc.process();
+                break;
+            case ("4"):
+                GCD.process();
+                break;
+            case ("5"):
+                Progression.process();
+                break;
+            case ("6"):
+                Prime.process();
+                break;
+            default:
+                break;
+        }
     }
 
     public static void choiceValidator(String choice) {
@@ -27,12 +60,6 @@ public class App {
         System.exit(0);
     }
 
-    public static void greeting() {
-        System.out.print("Welcome to the Brain Games!" + "\n" + "May I have your name? ");
-        Scanner sc = new Scanner(System.in);
-        name = sc.nextLine();
-        System.out.println("Hello, " + name + "!");
-    }
 
     public static String choice() {
         System.out.print("""
@@ -47,9 +74,5 @@ public class App {
                 Your choice:\s""");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
-    }
-
-    public static String getName() {
-        return name;
     }
 }

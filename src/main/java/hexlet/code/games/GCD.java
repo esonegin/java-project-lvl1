@@ -1,36 +1,17 @@
 package hexlet.code.games;
 
-import hexlet.code.App;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class GCD {
 
-    private static int gcdIntValue;
-
-    public static void start() {
-        System.out.println("Find the greatest common divisor of given numbers.");
-    }
+    private static final String[] QuestionArray = new String[Utils.ATTEMPTS];
+    private static final String[] expectedResponse = new String[Utils.ATTEMPTS];
+    private static final String description = "Find the greatest common divisor of given numbers.";
 
     public static void process() {
-        int range = Utils.VALUERANGE;
-        int gcdRandomizeFirstValue = (int) (Math.random() * range);
-        int gcdRandomizeSecondValue = (int) (Math.random() * range);
-        //Большее число поделить на меньшее
-        gcdIntValue = surplusFinder(Math.max(gcdRandomizeFirstValue, gcdRandomizeSecondValue),
-                Math.min(gcdRandomizeFirstValue, gcdRandomizeSecondValue));
-        String answer = Engine.question(resultValue(gcdRandomizeFirstValue, gcdRandomizeSecondValue));
-        if (Integer.parseInt(answer) == gcdIntValue) {
-            System.out.println("Correct!");
-            Engine.setProcessCount(Engine.getProcessCount() + 1);
-        } else {
-            System.out.println("Incorrect");
-            Engine.setProcessCount(-1);
-            System.out.println("'" + answer + "'"
-                    + " is wrong answer ;(. Correct answer was '"
-                    + gcdIntValue + "'. Let's try again, " + App.getName()
-                    + "!");
-        }
+        questionStringArray();
+        Engine.flow(QuestionArray, expectedResponse, description);
     }
 
     public static int surplusFinder(int first, int second) {
@@ -44,8 +25,16 @@ public class GCD {
         return surplus1;
     }
 
-    public static String resultValue(int first, int second) {
-
-        return first + " " + second;
+    //Заполняем массив вопросов рандомными примерами
+    public static void questionStringArray() {
+        for (int i = 0; i < Utils.ATTEMPTS; i++) {
+            int range = Utils.VALUERANGE;
+            int first = (int) (Math.random() * range);
+            int second = (int) (Math.random() * range);
+            int gcdIntValue = surplusFinder(Math.max(first, second),
+                    Math.min(first, second));
+            QuestionArray[i] = first + " " + second;
+            expectedResponse[i] = String.valueOf(gcdIntValue);
+        }
     }
 }
