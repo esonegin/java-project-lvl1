@@ -5,13 +5,13 @@ import hexlet.code.Utils;
 
 public class GCD {
 
-    private static final String[] QuestionArray = new String[Utils.ATTEMPTS];
-    private static final String[] expectedResponse = new String[Utils.ATTEMPTS];
-    private static final String description = "Find the greatest common divisor of given numbers.";
+    private static final String[] QUESTIONARRAY = new String[Utils.ATTEMPTS];
+    private static final String[] EXPECTEDRESPONSEARRAY = new String[Utils.ATTEMPTS];
+    private static final String DESCRIPTION = "Find the greatest common divisor of given numbers.";
 
     public static void process() {
         questionStringArray();
-        Engine.flow(QuestionArray, expectedResponse, description);
+        Engine.flow(QUESTIONARRAY, EXPECTEDRESPONSEARRAY, DESCRIPTION);
     }
 
     public static int surplusFinder(int first, int second) {
@@ -33,8 +33,8 @@ public class GCD {
             int second = (int) (Math.random() * range);
             int gcdIntValue = surplusFinder(Math.max(first, second),
                     Math.min(first, second));
-            QuestionArray[i] = first + " " + second;
-            expectedResponse[i] = String.valueOf(gcdIntValue);
+            QUESTIONARRAY[i] = first + " " + second;
+            EXPECTEDRESPONSEARRAY[i] = String.valueOf(gcdIntValue);
         }
     }
 }

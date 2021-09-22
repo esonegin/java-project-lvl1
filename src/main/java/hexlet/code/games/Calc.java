@@ -5,14 +5,14 @@ import hexlet.code.Utils;
 
 public class Calc {
 
-    private static final String[] QuestionArray = new String[Utils.ATTEMPTS];
-    private static final String[] expectedResponse = new String[Utils.ATTEMPTS];
-    private static final String description = "What is the result of the expression?";
+    private static final String[] QUESTIONARRAY = new String[Utils.ATTEMPTS];
+    private static final String[] EXPECTEDRESPONSEARRAY = new String[Utils.ATTEMPTS];
+    private static final String DESCRIPTION = "What is the result of the expression?";
 
 
     public static void process() {
         questionStringArray();
-        Engine.flow(QuestionArray, expectedResponse, description);
+        Engine.flow(QUESTIONARRAY, EXPECTEDRESPONSEARRAY, DESCRIPTION);
     }
 
     public static int resultValue(int first, int second, char operation) {
@@ -37,8 +37,8 @@ public class Calc {
             char[] operations = {'+', '-', '*'};
             int index = (int) (Math.random() * Utils.OPERATIONRANGE);
             char operation = operations[index];
-            QuestionArray[i] = first + " " + operation + " " + second;
-            expectedResponse[i] = String.valueOf(resultValue(first, second, operation));
+            QUESTIONARRAY[i] = first + " " + operation + " " + second;
+            EXPECTEDRESPONSEARRAY[i] = String.valueOf(resultValue(first, second, operation));
         }
     }
 }

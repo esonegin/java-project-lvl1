@@ -6,13 +6,13 @@ import hexlet.code.Utils;
 public class Progression {
 
     private static final int PROGRESSIONLENGTH = 10;
-    private static final String[] QuestionArray = new String[Utils.ATTEMPTS];
-    private static final String[] expectedResponse = new String[Utils.ATTEMPTS];
-    private static final String description = "What number is missing in the progression?";
+    private static final String[] QUESTIONARRAY = new String[Utils.ATTEMPTS];
+    private static final String[] EXPECTEDRESPONSEARRAY = new String[Utils.ATTEMPTS];
+    private static final String DESCRIPTION = "What number is missing in the progression?";
 
     public static void process() {
         questionStringArray();
-        Engine.flow(QuestionArray, expectedResponse, description);
+        Engine.flow(QUESTIONARRAY, EXPECTEDRESPONSEARRAY, DESCRIPTION);
     }
 
     //Заполняем массив вопросов рандомными примерами
@@ -21,9 +21,9 @@ public class Progression {
             //Заполняем массив рандомными значениями
             String[] progression = pullProgressionArray();
             //Удаляем значение по рандомному индексу и записываем его в массив ответов
-            expectedResponse[i] = String.valueOf(removeRandomIndex(progression));
+            EXPECTEDRESPONSEARRAY[i] = String.valueOf(removeRandomIndex(progression));
             //Добавляем строку с прогрессией в массив вопросов
-            QuestionArray[i] = addStringProgression(progression);
+            QUESTIONARRAY[i] = addStringProgression(progression);
         }
     }
 
