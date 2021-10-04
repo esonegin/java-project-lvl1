@@ -12,15 +12,17 @@ import java.util.Scanner;
 public class App {
 
     private static final String[] GAMES = new String[]{"1", "2", "3", "4", "5", "6"};
-    private static String choice;
+
 
     public static void main(String[] args) {
         //Выводим меню и записываем выбор в переменную
-        choice = choice();
+        String choice = choice();
         //Валидируем выбор
-        choiceValidator(choice);
+        if (!choiceValidator(choice)) {
+            return;
+        }
         //Выводим приветствие
-        Engine.greeting();
+        //Engine.greeting();
         //Запускаем игру
         startGame(choice);
 
@@ -29,6 +31,7 @@ public class App {
     public static void startGame(String str) {
         switch (str) {
             case ("1"):
+                Cli.greeting();
                 break;
             case ("2"):
                 Even.process();
@@ -50,13 +53,13 @@ public class App {
         }
     }
 
-    public static void choiceValidator(String str) {
+    public static boolean choiceValidator(String str) {
         for (String gamenumber : GAMES) {
             if (str.equals(gamenumber)) {
-                return;
+                return true;
             }
         }
-        System.exit(0);
+        return false;
     }
 
 
@@ -73,9 +76,5 @@ public class App {
                 Your choice:\s""");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
-    }
-
-    public static String getChoice() {
-        return choice();
     }
 }

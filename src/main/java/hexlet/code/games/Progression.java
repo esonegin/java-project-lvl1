@@ -5,14 +5,14 @@ import hexlet.code.Utils;
 
 public class Progression {
 
-    private static final int PROGRESSIONLENGTH = 10;
-    private static final String[] QUESTIONARRAY = new String[Utils.ATTEMPTS];
-    private static final String[] EXPECTEDRESPONSEARRAY = new String[Utils.ATTEMPTS];
+    private static final int PROGRESSION_LENGTH = 10;
+    private static String[] question = new String[Utils.ATTEMPTS];
+    private static String[] response = new String[Utils.ATTEMPTS];
     private static final String DESCRIPTION = "What number is missing in the progression?";
 
     public static void process() {
         questionStringArray();
-        Engine.flow(QUESTIONARRAY, EXPECTEDRESPONSEARRAY, DESCRIPTION);
+        Engine.flow(question, response, DESCRIPTION);
     }
 
     //Заполняем массив вопросов рандомными примерами
@@ -21,15 +21,15 @@ public class Progression {
             //Заполняем массив рандомными значениями
             String[] progression = pullProgressionArray();
             //Удаляем значение по рандомному индексу и записываем его в массив ответов
-            EXPECTEDRESPONSEARRAY[i] = String.valueOf(removeRandomIndex(progression));
+            response[i] = String.valueOf(removeRandomIndex(progression));
             //Добавляем строку с прогрессией в массив вопросов
-            QUESTIONARRAY[i] = addStringProgression(progression);
+            question[i] = addStringProgression(progression);
         }
     }
 
     //Наполняем массив
     public static String[] pullProgressionArray() {
-        int[] progression = new int[PROGRESSIONLENGTH];
+        int[] progression = new int[PROGRESSION_LENGTH];
         String[] result = new String[progression.length];
         //Рандомизируем разницу прогрессии
         int difference = (int) (Math.random() * Utils.VALUERANGE);

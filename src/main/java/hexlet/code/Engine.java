@@ -3,11 +3,9 @@ package hexlet.code;
 import java.util.Scanner;
 
 public class Engine {
-
-    private static int processCount;
     private static String name = "";
 
-    public static void greeting() {
+    private static void greeting() {
         System.out.print("Welcome to the Brain Games!" + "\n" + "May I have your name? ");
         Scanner sc = new Scanner(System.in);
         name = sc.nextLine();
@@ -15,8 +13,10 @@ public class Engine {
     }
 
     public static void flow(String[] questionArray, String[] expectedResponse, String description) {
+        greeting();
+        int processCount = 0;
         System.out.println(description);
-        for (int i = 0; i < Utils.ATTEMPTS && processCount != -1; i++) {
+        for (int i = 0; i < Utils.ATTEMPTS; i++) {
             String actualResponse = question(questionArray[i]);
             if (actualResponse.equals(expectedResponse[i])) {
                 System.out.println("Correct!");
