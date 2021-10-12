@@ -34,7 +34,7 @@ public class Calc {
             int first = Utils.getRandom(Utils.MIN, Utils.MAX);
             int second = (int) (Math.random() * Utils.VALUERANGE);
             char[] operations = {'+', '-', '*'};
-            int index = Utils.getRandom(Utils.MIN, Utils.OPERATIONRANGE);
+            int index = Utils.getRandom(Utils.MIN, operations.length - 1);
             char operation = operations[index];
             question[i] = first + " " + operation + " " + second;
             response[i] = String.valueOf(resultValue(first, second, operation));
