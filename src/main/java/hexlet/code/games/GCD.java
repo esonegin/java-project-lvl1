@@ -5,12 +5,12 @@ import hexlet.code.Utils;
 
 public class GCD {
 
-    private static String[] question = new String[Utils.ATTEMPTS];
-    private static String[] response = new String[Utils.ATTEMPTS];
     private static final String DESCRIPTION = "Find the greatest common divisor of given numbers.";
 
     public static void process() {
-        questionStringArray();
+        String[] question = new String[Utils.ATTEMPTS];
+        String[] response = new String[Utils.ATTEMPTS];
+        questionStringArray(question, response);
         Engine.flow(question, response, DESCRIPTION);
     }
 
@@ -26,11 +26,10 @@ public class GCD {
     }
 
     //Заполняем массив вопросов рандомными примерами
-    public static void questionStringArray() {
+    public static void questionStringArray(String[] question, String[] response) {
         for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            int range = Utils.VALUERANGE;
-            int first = (int) (Math.random() * range);
-            int second = (int) (Math.random() * range);
+            int first = Utils.getRandom(Utils.MIN, Utils.VALUERANGE);
+            int second = Utils.getRandom(Utils.MIN, Utils.VALUERANGE);
             int gcdIntValue = surplusFinder(Math.max(first, second),
                     Math.min(first, second));
             question[i] = first + " " + second;

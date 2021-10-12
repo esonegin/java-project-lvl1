@@ -6,17 +6,18 @@ import hexlet.code.Utils;
 public class Progression {
 
     private static final int PROGRESSION_LENGTH = 10;
-    private static String[] question = new String[Utils.ATTEMPTS];
-    private static String[] response = new String[Utils.ATTEMPTS];
+
     private static final String DESCRIPTION = "What number is missing in the progression?";
 
     public static void process() {
-        questionStringArray();
+        String[] question = new String[Utils.ATTEMPTS];
+        String[] response = new String[Utils.ATTEMPTS];
+        questionStringArray(question, response);
         Engine.flow(question, response, DESCRIPTION);
     }
 
     //Заполняем массив вопросов рандомными примерами
-    public static void questionStringArray() {
+    public static void questionStringArray(String[] question, String[] response) {
         for (int i = 0; i < Utils.ATTEMPTS; i++) {
             //Заполняем массив рандомными значениями
             String[] progression = pullProgressionArray();
@@ -32,9 +33,9 @@ public class Progression {
         int[] progression = new int[PROGRESSION_LENGTH];
         String[] result = new String[progression.length];
         //Рандомизируем разницу прогрессии
-        int difference = (int) (Math.random() * Utils.VALUERANGE);
+        int difference = Utils.getRandom(Utils.MIN, Utils.VALUERANGE);
         //Рандомизируем начальное значение прогрессии (0 - 100)
-        int value = (int) (Math.random() * Utils.VALUERANGE);
+        int value = Utils.getRandom(Utils.MIN, Utils.VALUERANGE);
         progression[0] = value;
         for (int i = 1; i < progression.length; i++) {
             progression[i] = progression[i - 1] + difference;
@@ -47,7 +48,7 @@ public class Progression {
 
     public static String removeRandomIndex(String[] array) {
         //Заменяем рандомное значение
-        int randomIndex = (int) (Math.random() * array.length);
+        int randomIndex = Utils.getRandom(Utils.MIN, array.length);
         String result = array[randomIndex];
         array[randomIndex] = "..";
         return result;

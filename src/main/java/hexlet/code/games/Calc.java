@@ -6,11 +6,11 @@ import hexlet.code.Utils;
 public class Calc {
 
     private static final String DESCRIPTION = "What is the result of the expression?";
-    private static String[] question = new String[Utils.ATTEMPTS];
-    private static String[] response = new String[Utils.ATTEMPTS];
 
     public static void process() {
-        questionStringArray();
+        String[] question = new String[Utils.ATTEMPTS];
+        String[] response = new String[Utils.ATTEMPTS];
+        questionStringArray(question, response);
         Engine.flow(question, response, DESCRIPTION);
     }
 
@@ -29,13 +29,12 @@ public class Calc {
     }
 
     //Заполняем массив вопросов рандомными примерами
-    public static void questionStringArray() {
-
+    public static void questionStringArray(String[] question, String[] response) {
         for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            int first = (int) (Math.random() * Utils.VALUERANGE);
+            int first = Utils.getRandom(Utils.MIN, Utils.MAX);
             int second = (int) (Math.random() * Utils.VALUERANGE);
             char[] operations = {'+', '-', '*'};
-            int index = (int) (Math.random() * Utils.OPERATIONRANGE);
+            int index = Utils.getRandom(Utils.MIN, Utils.OPERATIONRANGE);
             char operation = operations[index];
             question[i] = first + " " + operation + " " + second;
             response[i] = String.valueOf(resultValue(first, second, operation));

@@ -11,20 +11,12 @@ import java.util.Scanner;
 
 public class App {
 
-    private static final String[] GAMES = new String[]{"1", "2", "3", "4", "5", "6"};
-
-
     public static void main(String[] args) {
-        //Выводим меню и записываем выбор в переменную
-        String choice = choice();
-        //Валидируем выбор
-        if (!choiceValidator(choice)) {
-            return;
-        }
-        //Выводим приветствие
-        //Engine.greeting();
+        //Выводим меню
+        printMenu();
         //Запускаем игру
-        startGame(choice);
+        Scanner sc = new Scanner(System.in);
+        startGame(sc.nextLine());
 
     }
 
@@ -53,17 +45,7 @@ public class App {
         }
     }
 
-    public static boolean choiceValidator(String str) {
-        for (String gamenumber : GAMES) {
-            if (str.equals(gamenumber)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public static String choice() {
+    public static void printMenu() {
         System.out.print("""
                 Please enter the game number and press Enter.
                 1 - Greet
@@ -74,7 +56,5 @@ public class App {
                 6 - Prime
                 0 - Exit
                 Your choice:\s""");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
     }
 }

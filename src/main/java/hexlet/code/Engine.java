@@ -3,21 +3,16 @@ package hexlet.code;
 import java.util.Scanner;
 
 public class Engine {
-    private static String name = "";
-
-    private static void greeting() {
-        System.out.print("Welcome to the Brain Games!" + "\n" + "May I have your name? ");
-        Scanner sc = new Scanner(System.in);
-        name = sc.nextLine();
-        System.out.println("Hello, " + name + "!");
-    }
 
     public static void flow(String[] questionArray, String[] expectedResponse, String description) {
-        greeting();
-        int processCount = 0;
+        System.out.print("Welcome to the Brain Games!" + "\n" + "May I have your name? ");
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        System.out.println("Hello, " + name + "!");
         System.out.println(description);
         for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            String actualResponse = question(questionArray[i]);
+            System.out.print("Question: " + questionArray[i] + "\n" + "Your answer: ");
+            String actualResponse = sc.nextLine();
             if (actualResponse.equals(expectedResponse[i])) {
                 System.out.println("Correct!");
 
@@ -25,23 +20,10 @@ public class Engine {
                 System.out.println("Incorrect");
                 System.out.println("'" + actualResponse
                         + "'" + " is wrong answer ;(. Correct answer was '"
-                        + expectedResponse[i] + "'. Let's try again, " + Engine.getName() + "!");
-                processCount = -1;
-                break;
+                        + expectedResponse[i] + "'. Let's try again, " + name + "!");
+                return;
             }
         }
-        if (processCount != -1) {
-            System.out.println("Congratulations, " + Engine.getName() + "!");
-        }
-    }
-
-    public static String question(String value) {
-        System.out.print("Question: " + value + "\n" + "Your answer: ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
-
-    public static String getName() {
-        return name;
+        System.out.println("Congratulations, " + name + "!");
     }
 }
