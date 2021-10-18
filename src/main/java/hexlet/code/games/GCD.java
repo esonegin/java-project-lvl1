@@ -10,7 +10,14 @@ public class GCD {
     public static void process() {
         String[] question = new String[Utils.ATTEMPTS];
         String[] response = new String[Utils.ATTEMPTS];
-        questionStringArray(question, response);
+        for (int i = 0; i < Utils.ATTEMPTS; i++) {
+            int first = Utils.getRandom(Utils.MIN, Utils.VALUE_RANGE);
+            int second = Utils.getRandom(Utils.MIN, Utils.VALUE_RANGE);
+            int gcdIntValue = surplusFinder(Math.max(first, second),
+                    Math.min(first, second));
+            question[i] = first + " " + second;
+            response[i] = String.valueOf(gcdIntValue);
+        }
         Engine.flow(question, response, DESCRIPTION);
     }
 
@@ -23,17 +30,5 @@ public class GCD {
             surplus1 = surplusFinder(second, surplus1);
         }
         return surplus1;
-    }
-
-    //Заполняем массив вопросов рандомными примерами
-    public static void questionStringArray(String[] question, String[] response) {
-        for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            int first = Utils.getRandom(Utils.MIN, Utils.VALUERANGE);
-            int second = Utils.getRandom(Utils.MIN, Utils.VALUERANGE);
-            int gcdIntValue = surplusFinder(Math.max(first, second),
-                    Math.min(first, second));
-            question[i] = first + " " + second;
-            response[i] = String.valueOf(gcdIntValue);
-        }
     }
 }

@@ -10,34 +10,21 @@ public class Calc {
     public static void process() {
         String[] question = new String[Utils.ATTEMPTS];
         String[] response = new String[Utils.ATTEMPTS];
-        questionStringArray(question, response);
-        Engine.flow(question, response, DESCRIPTION);
-    }
-
-    public static int resultValue(int first, int second, char operation) {
-        switch (operation) {
-            case '+':
-                return first + second;
-            case '-':
-                return first - second;
-            case '*':
-                return first * second;
-            default:
-                break;
-        }
-        return 0;
-    }
-
-    //Заполняем массив вопросов рандомными примерами
-    public static void questionStringArray(String[] question, String[] response) {
         for (int i = 0; i < Utils.ATTEMPTS; i++) {
             int first = Utils.getRandom(Utils.MIN, Utils.MAX);
-            int second = (int) (Math.random() * Utils.VALUERANGE);
+            int second = (int) (Math.random() * Utils.VALUE_RANGE);
             char[] operations = {'+', '-', '*'};
             int index = Utils.getRandom(Utils.MIN, operations.length - 1);
             char operation = operations[index];
             question[i] = first + " " + operation + " " + second;
-            response[i] = String.valueOf(resultValue(first, second, operation));
+            if (operation == '+') {
+                response[i] = String.valueOf(first + second);
+            } else if (operation == '-') {
+                response[i] = String.valueOf(first - second);
+            } else {
+                response[i] = String.valueOf(first * second);
+            }
         }
+        Engine.flow(question, response, DESCRIPTION);
     }
 }
