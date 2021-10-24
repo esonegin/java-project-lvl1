@@ -8,23 +8,14 @@ public class Prime {
     private static final String DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void process() {
-        String[] question = new String[Utils.ATTEMPTS];
-        String[] response = new String[Utils.ATTEMPTS];
-
-        int[] questionInt = new int[Utils.ATTEMPTS];
-        for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            questionInt[i] = Utils.getRandom(Utils.MIN, Utils.VALUE_RANGE);
-            question[i] = String.valueOf(questionInt[i]);
+        String[] questions = new String[Engine.ATTEMPTS];
+        String[] answers = new String[Engine.ATTEMPTS];
+        for (int i = 0; i < Engine.ATTEMPTS; i++) {
+            int j = Utils.getRandom(Utils.MIN, Utils.MAX);
+            questions[i] = String.valueOf(j);
+            answers[i] = isPrime(j) ? "yes" : "no";
         }
-        //resultValue(questionInt(question), response);
-        for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            if (isPrime(questionInt[i])) {
-                response[i] = ("yes");
-            } else {
-                response[i] = ("no");
-            }
-        }
-        Engine.flow(question, response, DESCRIPTION);
+        Engine.flow(questions, answers, DESCRIPTION);
     }
 
     public static boolean isPrime(final int n) {

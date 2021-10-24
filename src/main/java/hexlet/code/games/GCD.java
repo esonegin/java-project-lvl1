@@ -8,27 +8,25 @@ public class GCD {
     private static final String DESCRIPTION = "Find the greatest common divisor of given numbers.";
 
     public static void process() {
-        String[] question = new String[Utils.ATTEMPTS];
-        String[] response = new String[Utils.ATTEMPTS];
-        for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            int first = Utils.getRandom(Utils.MIN, Utils.VALUE_RANGE);
-            int second = Utils.getRandom(Utils.MIN, Utils.VALUE_RANGE);
-            int gcdIntValue = surplusFinder(Math.max(first, second),
+        String[] questions = new String[Engine.ATTEMPTS];
+        String[] answers = new String[Engine.ATTEMPTS];
+        for (int i = 0; i < Engine.ATTEMPTS; i++) {
+            int first = Utils.getRandom(Utils.MIN, Utils.MAX);
+            int second = Utils.getRandom(Utils.MIN, Utils.MAX);
+            int gcdIntValue = findGcd(Math.max(first, second),
                     Math.min(first, second));
-            question[i] = first + " " + second;
-            response[i] = String.valueOf(gcdIntValue);
+            questions[i] = first + " " + second;
+            answers[i] = String.valueOf(gcdIntValue);
         }
-        Engine.flow(question, response, DESCRIPTION);
+        Engine.flow(questions, answers, DESCRIPTION);
     }
 
-    public static int surplusFinder(int first, int second) {
-        int surplus1 = first % second;
+    public static int findGcd(int first, int second) {
+        int surplus = first % second;
         //Если остаток 0, то НОД - меньшее число
-        if (surplus1 == 0) {
+        if (surplus == 0) {
             return second;
-        } else {
-            surplus1 = surplusFinder(second, surplus1);
         }
-        return surplus1;
+        return findGcd(second, surplus);
     }
 }

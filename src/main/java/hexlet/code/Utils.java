@@ -3,8 +3,6 @@ package hexlet.code;
 import java.util.Random;
 
 public class Utils {
-    public static final int VALUE_RANGE = 100;
-    public static final int ATTEMPTS = 3;
     public static final int MIN = 0;
     public static final int MAX = 100;
 

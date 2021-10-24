@@ -4,23 +4,25 @@ import java.util.Scanner;
 
 public class Engine {
 
-    public static void flow(String[] questionArray, String[] expectedResponse, String description) {
+    public static final int ATTEMPTS = 3;
+
+    public static void flow(String[] questions, String[] correctAnswers, String description) {
         System.out.print("Welcome to the Brain Games!" + "\n" + "May I have your name? ");
         Scanner sc = new Scanner(System.in);
         String name = sc.nextLine();
         System.out.println("Hello, " + name + "!");
         System.out.println(description);
-        for (int i = 0; i < Utils.ATTEMPTS; i++) {
-            System.out.print("Question: " + questionArray[i] + "\n" + "Your answer: ");
+        for (int i = 0; i < ATTEMPTS; i++) {
+            System.out.print("Question: " + questions[i] + "\n" + "Your answer: ");
             String actualResponse = sc.nextLine();
-            if (actualResponse.equals(expectedResponse[i])) {
+            if (actualResponse.equals(correctAnswers[i])) {
                 System.out.println("Correct!");
 
             } else {
                 System.out.println("Incorrect");
                 System.out.println("'" + actualResponse
                         + "'" + " is wrong answer ;(. Correct answer was '"
-                        + expectedResponse[i] + "'. Let's try again, " + name + "!");
+                        + correctAnswers[i] + "'. Let's try again, " + name + "!");
                 return;
             }
         }
