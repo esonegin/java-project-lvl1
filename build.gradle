@@ -28,6 +28,9 @@ run {
     standardInput = System.in
 }
 
+checkstyle {
+    toolVersion '9.0'
+}
 
 group = 'hexlet.code'
 version = '1.0-SNAPSHOT'
