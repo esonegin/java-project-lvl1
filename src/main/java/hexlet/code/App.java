@@ -30,7 +30,8 @@ public class App {
             case ("4") -> GCD.process();
             case ("5") -> Progression.process();
             case ("6") -> Prime.process();
-            default -> System.exit(0);
+            default -> {
+            }
         }
     }
 
